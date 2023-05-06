@@ -1,6 +1,6 @@
+import { changeFilter } from 'store/contacts/slice';
 import { FiltContainer } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeFilter } from 'store/slice';
 
 export default function Filter() {
   const filterValue = useSelector(state => state.filter);

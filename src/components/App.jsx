@@ -1,23 +1,27 @@
-import { useSelector } from 'react-redux';
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
+import Phonebook from 'Pages/PhoneBook';
+import { lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { refreshUser } from 'store/user/operation';
+import { Layout } from './Layout';
+
+const HomePage = lazy(() => import('../Pages/Home'));
 
 export default function App() {
-  const contacts = useSelector(state => state.contacts.items);
-  return (
-    <div className="App">
-      <h2>Phonebook</h2>
-      <ContactForm />
-      <h2>Contacts</h2>
-      {contacts.length === 0 ? (
-        <p>There are no contacts in the phonebook yet.</p>
-      ) : (
-        <>
-          <Filter />
-          <ContactList />
-        </>
-      )}
-    </div>
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(state => state.user.isRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <p> Refreshing user .... </p>
+  ) : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+      </Route>
+    </Routes>
   );
 }

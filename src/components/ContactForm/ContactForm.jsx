@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { FormContainer, Label, Button } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from 'store/API/addContacts';
+import { addContacts } from 'store/contacts/operation';
 
 export default function ContactForm() {
   const contacts = useSelector(state => state.contacts.items);
@@ -27,7 +27,6 @@ export default function ContactForm() {
 
   const onSubmit = e => {
     e.preventDefault();
-
     if (contacts.find(contact => contact.name === name)) {
       alert(`${name} is already in contacts.`);
       resetForm();
