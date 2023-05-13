@@ -1,7 +1,9 @@
+import { Typography } from '@mui/material';
+
 export default function Home() {
   return (
-    <div>
-      <h1> PhoneBook App </h1>
-    </div>
+    <Typography style={{ textAlign: 'center' }} component="p" variant="h3">
+      Log in or create your account
+    </Typography>
   );
 }

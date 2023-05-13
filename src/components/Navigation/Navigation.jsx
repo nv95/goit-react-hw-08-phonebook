@@ -1,13 +1,22 @@
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from './Navigation.styled';
+import { Button } from '@mui/material';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
   return (
     <nav>
-      <NavLink to="/"> Home </NavLink>
-      {isLoggedIn && <NavLink to="/phoneBook"> PhoneBook </NavLink>}
+      <Link to="/">
+        <Button variant="contained">Home</Button>
+      </Link>
+      {isLoggedIn && (
+        <Link to="/phoneBook">
+          <Button variant="contained" color="success">
+            PhoneBook
+          </Button>
+        </Link>
+      )}
     </nav>
   );
 };
