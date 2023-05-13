@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
 import { Link } from './Navigation.styled';
 import { Button } from '@mui/material';
+import { useAuth } from 'hooks/useAuth';
 
 export const Navigation = () => {
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+  const { isLoggedIn } = useAuth();
 
   return (
     <nav>

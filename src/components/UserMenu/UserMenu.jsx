@@ -1,11 +1,12 @@
 import { Button, Typography } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logOut } from 'store/user/operation';
 import { ContainerLogIn } from './UserMenu.styled';
+import { useAuth } from 'hooks/useAuth';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
-  const userMail = useSelector(state => state.user.user.email);
+  const { user } = useAuth();
 
   return (
     <ContainerLogIn>
@@ -15,7 +16,7 @@ export const UserMenu = () => {
         color="blue"
         component="p"
       >
-        Welcome : {userMail}
+        Welcome : {user}
       </Typography>
       <Button
         variant="contained"

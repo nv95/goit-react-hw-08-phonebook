@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const authSlice = createSlice({
-  name: 'user',
+  name: 'auth',
   initialState,
   extraReducers: {
     [register.fulfilled](state, action) {
